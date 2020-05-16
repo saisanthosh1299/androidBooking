@@ -18,6 +18,7 @@
         android:text="Register"
         android:textColor="#2196F3"
         android:textSize="24sp"
+        android:onClick="registerPressed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -33,6 +34,7 @@
         android:text="Log In"
         android:textColor="#2196F3"
         android:textSize="24sp"
+        android:onClick="loginPressed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
@@ -48,6 +50,7 @@
         android:text="Admin Login"
         android:textColor="#2196F3"
         android:textSize="24sp"
+        android:onClick="adminLoginPressed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />

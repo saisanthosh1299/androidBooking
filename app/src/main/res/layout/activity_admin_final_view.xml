@@ -11,105 +11,139 @@
         android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginEnd="127dp"
         android:backgroundTint="#100E0E"
         android:text="Slot Delete"
         android:textColor="#2196F3"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="125dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="157dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="137dp"
+        android:layout_marginBottom="146dp"
         android:backgroundTint="#0B0A0A"
         android:text="Set Fields"
         android:textColor="#2196F3"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="537dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText11" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="246dp"
         android:text="Opening Time"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="246dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
         android:text="Closing Time"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="318dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="44dp"
         android:text="Each Slot Timing"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="386dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="43dp"
         android:text="No. of People/Slot"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="453dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <EditText
         android:id="@+id/editText8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="28dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="169dp"
-        tools:layout_editor_absoluteY="225dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/button8" />
 
     <EditText
         android:id="@+id/editText9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="27dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="171dp"
-        tools:layout_editor_absoluteY="297dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/editText8" />
 
     <EditText
         android:id="@+id/editText10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="27dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="171dp"
-        tools:layout_editor_absoluteY="365dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/editText9" />
 
     <EditText
         android:id="@+id/editText11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="27dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="171dp"
-        tools:layout_editor_absoluteY="432dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/editText10" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,6 +62,6 @@ public class UserLoginActivity extends AppCompatActivity {
 
     private void gotoBookingView() {
         Intent bookingView = new Intent(UserLoginActivity.this, FinalViewActivity.class);
-        UserLoginActivity.this.startActivity(bookingView);
+        startActivity(bookingView);
     }
 }

@@ -2,7 +2,7 @@ package com.anurag.androidbooking;
 
 public class User {
     private String email;
-    private String uID;
+    private String uniqueId;
     private String name;
 
     public String getEmail() {
@@ -13,12 +13,13 @@ public class User {
         this.email = email;
     }
 
-    public String getuID() {
-        return uID;
+
+    public String getUniqueId() {
+        return uniqueId;
     }
 
-    public void setuID(String uID) {
-        this.uID = uID;
+    public void setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
     }
 
     public String getName() {

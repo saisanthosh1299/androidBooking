@@ -1,79 +1,166 @@
 package com.anurag.androidbooking;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    FirebaseAuth auth;
-    String username;
-    String uID;
-    String email;
+    private FirebaseAuth mAuth;
+    FirebaseFirestore db;
+
+    String name;
     String password;
-    EditText nameEditText;
-    EditText uidEditText;
-    EditText mailEditText;
-    EditText passwordEditText;
-    User user;
+    String id;
+    String email;
+
+    EditText nameField;
+    EditText idField;
+    EditText mailField;
+    EditText passwordField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        auth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        nameEditText = findViewById(R.id.nameEditText);
-        uidEditText = findViewById(R.id.idEditText);
-        mailEditText = findViewById(R.id.emailEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
+        db = FirebaseFirestore.getInstance();
+        nameField = findViewById(R.id.nameEditText);
+        idField = findViewById(R.id.idEditText);
+        mailField = findViewById(R.id.emailEditText);
+        passwordField = findViewById(R.id.passwordEditText);
+        mAuth = FirebaseAuth.getInstance();
+        getUsers();
+    }
+
+    private void getUsers() {
+        db.collection("Users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("users","" + task.getResult().size());
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("TAG", document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 
     public void registerClick(View view) {
-        //Create user from details that are entered
-        username = nameEditText.getText().toString();
-        uID = uidEditText.getText().toString();
-        email = mailEditText.getText().toString();
-        password = passwordEditText.getText().toString();
-        if (username.isEmpty() || uID.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(RegisterActivity.this, "Please fill out form", Toast.LENGTH_SHORT).show();
-        } else {
-            user = new User();
-            user.setEmail(email);
-            user.setName(username);
-            user.setuID(uID);
+        //check if user entered all fields
+        name = nameField.getText().toString();
+        password = passwordField.getText().toString();
+        id = idField.getText().toString();
+        email = mailField.getText().toString();
 
-            //TODO: Check if valid uID
-            createUser();
+        if (name.isEmpty() || password.isEmpty() || id.isEmpty() || email.isEmpty()) {
+            Toast.makeText(RegisterActivity.this, "Fill all fields", Toast.LENGTH_SHORT).show();
+        } else {
+            //Create user from details that are entered
+            db.collection("Uid")
+                    .whereEqualTo("id", id)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        int count = 0;
+
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("checked UID", "uid: " + id + "size: " + task.getResult().size());
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Log.d("TAG", document.getId() + " => " + document.getData());
+                                    count++;
+                                }
+                                if (count == 0) {
+                                    //No id found
+                                    Toast.makeText(RegisterActivity.this, "invalid UID", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //id found -> valid
+                                    Toast.makeText(RegisterActivity.this, "valid UID", Toast.LENGTH_SHORT).show();
+                                    Log.d("checked UID", "uid: " + id);
+                                    db.collection("Users")
+                                            .whereEqualTo("uniqueId", id)
+                                            .get()
+                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                int newCount=0;
+
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task2) {
+                                                    if (task2.isSuccessful()) {
+                                                        Log.d("2checked UID", "uid: " + id + "size: " + task2.getResult().size());
+
+                                                        for (QueryDocumentSnapshot document : task2.getResult()) {
+                                                            Log.d("TAG", document.getId() + " => " + document.getData());
+                                                            newCount++;
+                                                        }
+                                                        if (newCount == 0) {
+                                                            //found no user with the id we entered -> register and create user
+                                                            Toast.makeText(RegisterActivity.this, "ID available", Toast.LENGTH_SHORT).show();
+
+                                                            register();
+                                                        } else {
+                                                            //id already taken
+                                                            Toast.makeText(RegisterActivity.this, "ID already taken", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    } else {
+                                                        Log.d("TAG", "Error getting documents: ", task2.getException());
+                                                    }
+                                                }
+                                            });
+                                }
+                            } else {
+                                Log.d("TAG", "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
         }
     }
 
     private void createUser() {
-        auth.createUserWithEmailAndPassword(email, password)
+        Map<String, Object> newUser = new HashMap<>();
+        User user = new User();
+        user.setEmail(email);
+        user.setName(name);
+        user.setUniqueId(id);
+        newUser.put(user.getName(), user);
+        db.collection("Users").document(user.getName()).set(user);
+    }
+
+    private void register() {
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(Task<AuthResult> task) {
+                    public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d("register", "createUserWithEmail:success");
-                            Toast.makeText(RegisterActivity.this, "Authentication success", Toast.LENGTH_SHORT).show();
-                            //FirebaseUser user = auth.getCurrentUser();
+                            Log.d("TAG", "createUserWithEmail:success");
+                            createUser();
 
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.d("register", "createUserWithEmail:failure", task.getException());
+                            Log.w("TAG", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(RegisterActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
+
 }

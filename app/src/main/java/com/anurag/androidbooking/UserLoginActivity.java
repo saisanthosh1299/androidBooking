@@ -1,6 +1,8 @@
 package com.anurag.androidbooking;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,8 +34,11 @@ public class UserLoginActivity extends AppCompatActivity {
         mailEditText = findViewById(R.id.emailTextField);
         email = mailEditText.getText().toString();
         password = passwordEditText.getText().toString();
-
-        doLogin();
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(UserLoginActivity.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
+        } else {
+            doLogin();
+        }
     }
 
     public void doLogin() {
@@ -44,7 +49,7 @@ public class UserLoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d("UserLogin", "signInWithEmail:success");
                             Toast.makeText(UserLoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-                            //start new Intent
+                            gotoBookingView();
 
                         } else {
                             Log.w("UserLogin", "signInWithEmail:failure", task.getException());
@@ -53,5 +58,10 @@ public class UserLoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void gotoBookingView() {
+        Intent bookingView = new Intent(UserLoginActivity.this, FinalViewActivity.class);
+        UserLoginActivity.this.startActivity(bookingView);
     }
 }

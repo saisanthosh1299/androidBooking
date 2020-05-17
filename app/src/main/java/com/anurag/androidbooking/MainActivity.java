@@ -16,16 +16,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void registerPressed(View view) {
         Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
-        MainActivity.this.startActivity(registerIntent);
+        startActivity(registerIntent);
     }
 
     public void loginPressed(View view) {
         Intent loginIntent = new Intent(MainActivity.this, UserLoginActivity.class);
-        MainActivity.this.startActivity(loginIntent);
+        startActivity(loginIntent);
     }
 
     public void adminLoginPressed(View view) {
         Intent adminIntent = new Intent(MainActivity.this, AdminLoginActivity.class);
-        MainActivity.this.startActivity(adminIntent);
+        startActivity(adminIntent);
     }
 }

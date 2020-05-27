@@ -44,13 +44,14 @@
         android:layout_marginEnd="162dp"
         android:backgroundTint="#090808"
         android:text="Login"
+        android:onClick="loginAdmin"
         android:textColor="#2196F3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText12" />
+        app:layout_constraintTop_toBottomOf="@+id/adminID" />
 
     <EditText
-        android:id="@+id/editText12"
+        android:id="@+id/adminID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"

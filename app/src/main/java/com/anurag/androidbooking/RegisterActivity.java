@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -140,7 +142,19 @@ public class RegisterActivity extends AppCompatActivity {
         user.setName(name);
         user.setUniqueId(id);
         newUser.put(user.getName(), user);
-        db.collection("Users").document(user.getName()).set(user);
+        db.collection("Users").document(user.getName()).set(newUser)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("createUser","User saved");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("createUser", "error creating user");
+                    }
+                });
     }
 
     private void register() {

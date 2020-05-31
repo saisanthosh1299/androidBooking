@@ -79,16 +79,19 @@ public class FinalViewActivity extends AppCompatActivity {
                                                                         if (limit == maxLimit) {
                                                                             Log.d("Limit reached","booked out");
                                                                             Toast.makeText(FinalViewActivity.this, "Already booked out", Toast.LENGTH_SHORT).show();
-                                                                            //deactivate button
-                                                                            book.setVisibility(View.INVISIBLE);
-                                                                            book.setEnabled(false);
+                                                                            
+                                                                            
                                                                         } else if (slotNumber != 0) {
                                                                             Log.d("Already","booked");
                                                                             Toast.makeText(FinalViewActivity.this, "You already booked", Toast.LENGTH_SHORT).show();
                                                                             alert.setText("Already booked");
-                                                                            //deactivate button
-                                                                            book.setVisibility(View.INVISIBLE);
-                                                                            book.setEnabled(false);
+                                                                            
+                                                                            
+                                                                        } else {
+                                                                            //available 
+                                                                            Toast.makeText(FinalViewActivity.this, "Booking available", Toast.LENGTH_SHORT).show();
+                                                                            book.setEnabled(true);
+                                                                            book.setVisibility(View.VISIBLE);
                                                                         }
 
                                                                     } else {

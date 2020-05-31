@@ -79,7 +79,7 @@ public class FinalViewActivity extends AppCompatActivity {
                                                                         if (limit == maxLimit) {
                                                                             Log.d("Limit reached","booked out");
                                                                             Toast.makeText(FinalViewActivity.this, "Already booked out", Toast.LENGTH_SHORT).show();
-                                                                            
+                                                                            alert.setText("Cafeteria booked out");
                                                                             
                                                                         } else if (slotNumber != 0) {
                                                                             Log.d("Already","booked");

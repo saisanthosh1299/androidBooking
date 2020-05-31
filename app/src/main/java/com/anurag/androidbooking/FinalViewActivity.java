@@ -147,6 +147,6 @@ public class FinalViewActivity extends AppCompatActivity {
         //time
         //name
         //uniqueId
-        //written 
+        //written
     }
 }

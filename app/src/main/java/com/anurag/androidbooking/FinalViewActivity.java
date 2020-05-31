@@ -148,5 +148,13 @@ public class FinalViewActivity extends AppCompatActivity {
         //name
         //uniqueId
         //written
+        //the current users name,uid,email,and if registered successfully a written and time should be added
+        // slot booked :
+        //          name: ""
+        //          SlotDetail: ""
+        //          uniqueId: ""
+        //          time: ""
+        //          written: ""
+        //          email: ""
     }
 }

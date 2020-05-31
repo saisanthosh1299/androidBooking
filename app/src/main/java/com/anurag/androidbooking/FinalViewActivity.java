@@ -140,5 +140,13 @@ public class FinalViewActivity extends AppCompatActivity {
         //ok
         // done i guess
         // done!!!
+        // collection - TimeSlots
+        //documentId - name
+        //SlotDetail
+        //email
+        //time
+        //name
+        //uniqueId
+        //written 
     }
 }

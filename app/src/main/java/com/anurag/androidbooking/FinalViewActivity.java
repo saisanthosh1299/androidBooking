@@ -130,7 +130,12 @@ public class FinalViewActivity extends AppCompatActivity {
     }
 
     public void bookSlot(View view) {
-
+        //the button should already only be available when there is no booking for the user
+        //check that please // did you already write the code for that?
+        //see above but there are no bookings available here now i need to run the IOS app and book a slot will be doing it now
+        // it is working but taking time as it did in the ios app would be better if initially it was hidden and if there is no slot booked then the button may show up
+        // what do you think?
+        //right
     }
 }
 

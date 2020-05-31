@@ -2,6 +2,8 @@ package com.anurag.androidbooking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -166,6 +168,9 @@ public class RegisterActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "createUserWithEmail:success");
                             createUser();
+                            //start new intent
+                            Intent booking = new Intent(RegisterActivity.this, FinalViewActivity.class);
+                            startActivity(booking);
 
                         } else {
                             // If sign in fails, display a message to the user.

@@ -27,6 +27,7 @@ public class FinalViewActivity extends AppCompatActivity {
     long maxLimit;
     long limit;
     long slotNumber;
+    Scheduler schedule;
 
     @Override
     protected void onStart() {
@@ -133,44 +134,6 @@ public class FinalViewActivity extends AppCompatActivity {
     }
 
     public void bookSlot(View view) {
-        //how many bookings are there at the momemnt
-        // 2
-
-        //2 current bookings ? So, set the max to 2, then the button should also NOT ber available
-        //ok
-        // done i guess
-        // done!!!
-        // collection - TimeSlots
-        //documentId - name
-        //SlotDetail
-        //email
-        //time
-        //name
-//if bookPressed then create document in collection TimeSlots
-//field name string, field slotdetails (datatype?)
-//uniqueId String
-//time (datatype?)
-//written(datatype?)
-//        uniqueId
-        //written
-        //the current users name,uid,email,and if registered successfully a written and time should be added
-        // slot booked :
-        //          name: ""
-        //          SlotDetail: ""
-        //          uniqueId: ""
-        //          time: ""
-        //          written: ""
-        //          email: ""
+        
     }
 }
-//    there is a completely new collection is created named:
-//        named: TimeSlots
-//        then for the following every slot booked we create a document with its document id as the name of the logged in user
-//        so like the document id = name of the logged in user
-//        and next within the document id there are a total 6 different variable which need to be created and values written to
-//        1.name
-//        2.email
-//        3.slotDetail(this is done by calculating the slot detail from the formula and for the varaibles to calculate the formula we create the Scheduler class in admin field settings)
-//        4.time (We take this int he UTC format so that there can be no override of timezones)
-//        5.uniqueId
-//        6.written (to check whether or not slot is booked at a later stage!)

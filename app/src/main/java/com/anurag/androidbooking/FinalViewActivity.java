@@ -145,12 +145,12 @@ public class FinalViewActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot snapshot = task.getResult().getDocuments().get(0);
                             schedule = new Scheduler();
-                            schedule.eachSlotTime = (int) snapshot.get("eachSlotTime");
-                            schedule.maxPeopleLimit = (int) snapshot.get("maxPeopleLimit");
-                            schedule.personPerSlot = (int) snapshot.get("personPerSlot");
-                            Log.d("schedule", "value: " + schedule.eachSlotTime);
-                            Log.d("schedule", "value: " + schedule.maxPeopleLimit);
-                            Log.d("schedule", "value: " + schedule.personPerSlot);
+                            schedule.eachSlotTime = (long) snapshot.get("eachSlotTime");
+                            schedule.maxPeopleLimit = (long) snapshot.get("maxPeopleLimit");
+                            schedule.personPerSlot = (long) snapshot.get("personPerSlot");
+                            Log.d("schedule", "value eachSlotTime: " + schedule.eachSlotTime);
+                            Log.d("schedule", "value maxPeopleLimit: " + schedule.maxPeopleLimit);
+                            Log.d("schedule", "value personPerSlot: " + schedule.personPerSlot);
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
                         }

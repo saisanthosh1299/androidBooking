@@ -1,10 +1,11 @@
 package com.anurag.androidbooking;
 
 public class Scheduler {
-    int maxPeopleLimit;
-    int eachSlotTime;
+    long maxPeopleLimit;
+    long eachSlotTime;
+    long personPerSlot;
 
-    public int getMaxPeopleLimit() {
+    public long getMaxPeopleLimit() {
         return maxPeopleLimit;
     }
 
@@ -12,7 +13,7 @@ public class Scheduler {
         this.maxPeopleLimit = maxPeopleLimit;
     }
 
-    public int getEachSlotTime() {
+    public long getEachSlotTime() {
         return eachSlotTime;
     }
 
@@ -20,15 +21,12 @@ public class Scheduler {
         this.eachSlotTime = eachSlotTime;
     }
 
-    public int getPersonPerSlot() {
+    public long getPersonPerSlot() {
         return personPerSlot;
     }
 
     public void setPersonPerSlot(int personPerSlot) {
         this.personPerSlot = personPerSlot;
     }
-
-    int personPerSlot;
-
 
 }

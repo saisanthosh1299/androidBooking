@@ -45,7 +45,7 @@ public class FinalViewActivity extends AppCompatActivity {
 
                             for (final QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("Get Scheduler", document.getId() + " => " + document.getData());
-                                maxLimit = (long) document.get("MaxPeopleLimit");
+                                maxLimit = (long) document.get("maxPeopleLimit");
                                 Log.d("Get Scheduler","maxLimit = " + maxLimit);
 
                                 db.collection("Count")

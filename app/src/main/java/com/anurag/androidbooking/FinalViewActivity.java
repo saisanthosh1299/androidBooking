@@ -14,9 +14,12 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.w3c.dom.Document;
 
 public class FinalViewActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -134,6 +137,24 @@ public class FinalViewActivity extends AppCompatActivity {
     }
 
     public void bookSlot(View view) {
-        
+        db.collection("Scheduler")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot snapshot = task.getResult().getDocuments().get(0);
+                            schedule = new Scheduler();
+                            schedule.eachSlotTime = (int) snapshot.get("eachSlotTime");
+                            schedule.maxPeopleLimit = (int) snapshot.get("maxPeopleLimit");
+                            schedule.personPerSlot = (int) snapshot.get("personPerSlot");
+                            Log.d("schedule", "value: " + schedule.eachSlotTime);
+                            Log.d("schedule", "value: " + schedule.maxPeopleLimit);
+                            Log.d("schedule", "value: " + schedule.personPerSlot);
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 }

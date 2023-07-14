@@ -8,8 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Objects;
 
 public class AdminLoginActivity extends AppCompatActivity {
 
@@ -35,7 +38,7 @@ public class AdminLoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            if (task.getResult().size() == 1) {
+                            if (Objects.requireNonNull(task.getResult()).size() == 1) {
                                 //start new Intent
                                 Intent adminIntent = new Intent(AdminLoginActivity.this, AdminFinalViewActivity.class);
                                 startActivity(adminIntent);
